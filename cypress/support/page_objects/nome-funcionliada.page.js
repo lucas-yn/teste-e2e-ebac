@@ -1,9 +1,20 @@
-class NomeClasse {
-
-    nomeMetodo(parametros ){
-        //ações do método
+class ProdutosPage {
+    visitarUrl(){
+        cy.visit('produtos')
     }
 
+    buscarProduto(nomeProduto){
+        cy.get('.products > .row')
+        .contains(nomeProduto)
+        .click()
+    }
+
+    addProdutoNoCarrinho(tamanho, cor, quantidade){
+        cy.get('.button-variable-item-' + tamanho).click()
+        cy.get('.button-variable-item-' + cor).click()
+        cy.get('.input-text').clear().type(quantidade)
+        cy.get('.single_add_to_cart_button').click()
+    }
 }
 
-export default new NomeClasse()
+export default new ProdutosPage()
